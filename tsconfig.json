@@ -1,0 +1,20 @@
+{
+	"compilerOptions":
+	{
+		"alwaysStrict": true,
+		"baseUrl": "source",
+		"forceConsistentCasingInFileNames": true,
+		"module": "amd",
+		"noFallthroughCasesInSwitch": true,
+		"noImplicitAny": true,
+		"noImplicitReturns": true,
+		"noImplicitThis": true,
+		"noUnusedLocals": true,
+		"noUnusedParameters": true,
+		"outDir": "distribution",
+		"outFile": "distribution/rigid_physics_2d.js",
+		"strictNullChecks": true,
+		"target": "es2015"
+	},
+	"files": ["source/RigidPhysics2D.ts"]
+}

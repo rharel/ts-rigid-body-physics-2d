@@ -1,0 +1,22 @@
+{
+  "name": "ts-rigid-physics-2d",
+  "version": "1.0.0",
+  "description": "Rigid body physics for disc-shaped masses.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rharel/ts-rigid-physics-2d.git"
+  },
+  "keywords": [
+    "physics",
+    "2d",
+    "rigid",
+    "body"
+  ],
+  "author": "Raoul Harel",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rharel/ts-rigid-physics-2d/issues"
+  },
+  "homepage": "https://github.com/rharel/ts-rigid-physics-2d#readme",
+  "devDependencies": {}
+}

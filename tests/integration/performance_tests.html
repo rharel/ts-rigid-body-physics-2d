@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Benchmark Tests | Rigid Physics 2D</title>
+
+    <link rel="stylesheet" href="css/test_page.css">
+
+    <script src="../../libraries/require.js"></script>
+    <script src="../../distribution/rigid_physics_2d.js"></script>
+
+    <script>
+		// ------------ SIMULATION ------------- //
+		const simulation =
+        {
+            Physics: undefined,
+            world: undefined,
+            dt: 0.01
+        };
+        window.addEventListener("DOMContentLoaded", () =>
+        {
+			require(["RigidPhysics2D"], function(module)
+			{
+				simulation.Physics = module;
+			});
+        });
+
+		// ------------ TESTS ------------- //
+        const testing =
+        {
+            register: undefined,
+            active_test: undefined
+        };
+        {
+			const tests = [];
+
+			testing.register = function(specification)
+			{
+				tests.push(specification);
+			};
+			function list_tests(selection)
+			{
+				tests.forEach((test, index) =>
+                {
+					const option = document.createElement("option");
+					option.text = test.title;
+					option.value = index;
+
+					selection.add(option);
+				});
+				selection.addEventListener("change", () =>
+				{
+					const test = tests[selection.value];
+					if (test) { load_test(test); }
+				})
+			}
+			function load_test(test)
+			{
+				const active_test = testing.active_test;
+				if (active_test && active_test.teardown) { active_test.teardown(); }
+
+                simulation.world = test.setup(simulation.Physics);
+                simulation.world.initialize();
+
+				testing.active_test = test;
+			}
+			window.addEventListener("DOMContentLoaded", () =>
+			{
+				const selection = document.getElementById("test-selection");
+				list_tests(selection);
+			});
+        }
+
+		// ------------ UI ------------- //
+		{
+			function run_test(n)
+            {
+                for (let i = 0; i < n; ++i)
+                {
+                    testing.active_test.step();
+                    simulation.world.step(simulation.dt);
+                }
+            }
+			window.addEventListener("DOMContentLoaded", () =>
+			{
+				const iteration_count = document.getElementById("iteration-count");
+				const button = document.getElementById("benchmark-button");
+				const results = document.getElementById("results");
+
+				button.addEventListener("click", () =>
+                {
+                	const active_test = testing.active_test;
+                    if (active_test)
+                    {
+						const n = iteration_count.value;
+
+						button.disabled = true;
+						results.textContent = "Running " + n + " iterations...";
+						setTimeout(() =>
+                        {
+                        	run_test(n);
+							results.textContent += "Done.";
+							button.disabled = false;
+						}, 100);
+			        }
+                });
+			});
+		}
+    </script>
+    <script src="js/performance_tests/particles_in_a_box_naive.js"></script>
+    <script src="js/performance_tests/particles_in_a_box_quadtree.js"></script>
+</head>
+<body>
+<div>
+    <select id="test-selection" title="Select test">
+        <option selected>None</option>
+    </select>
+    <label for="iteration-count">Iteration count: </label>
+    <input id="iteration-count" type="number" min="1" max="1000000" value="1000">
+    <input id="benchmark-button" type="button" value="Begin benchmark">
+</div>
+<div id="results"></div>
+</body>
+</html>
