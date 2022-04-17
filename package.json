@@ -1,22 +1,11 @@
 {
-  "name": "ts-rigid-physics-2d",
-  "version": "1.0.0",
-  "description": "Rigid body physics for disc-shaped masses.",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/rharel/ts-rigid-physics-2d.git"
+  "author": "Raoul Harel <admin@rharel.com>",
+  "scripts": {
+    "parcel:serve:demo-pileup": "parcel serve --no-cache demo/pileup.html --dist-dir distribution",
+    "parcel:serve:demo-particles": "parcel serve --no-cache demo/particles.html --dist-dir distribution"
   },
-  "keywords": [
-    "physics",
-    "2d",
-    "rigid",
-    "body"
-  ],
-  "author": "Raoul Harel",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/rharel/ts-rigid-physics-2d/issues"
-  },
-  "homepage": "https://github.com/rharel/ts-rigid-physics-2d#readme",
-  "devDependencies": {}
+  "devDependencies": {
+    "parcel": "^2.4.1",
+    "typescript": "4.6.3"
+  }
 }

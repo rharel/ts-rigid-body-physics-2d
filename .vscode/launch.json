@@ -1,0 +1,28 @@
+{
+    "configurations": [
+        {
+            "type": "chrome",
+            "request": "launch",
+            "name": "Launch Pileup Demo in Chrome",
+            "url": "http://localhost:1234/distribution/pileup.html",
+            "webRoot": "${workspaceFolder}",
+            "breakOnLoad": true,
+            "sourceMapPathOverrides": {
+                "../*": "${webRoot}/*",
+                "/__parcel_source_root/*": "${webRoot}/*"
+            }
+        },
+        {
+            "type": "chrome",
+            "request": "launch",
+            "name": "Launch Particles Demo in Chrome",
+            "url": "http://localhost:1234/distribution/particles.html",
+            "webRoot": "${workspaceFolder}",
+            "breakOnLoad": true,
+            "sourceMapPathOverrides": {
+                "../*": "${webRoot}/*",
+                "/__parcel_source_root/*": "${webRoot}/*"
+            }
+        }
+    ]
+}

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <title>Particles Demo</title>
+
+    <style>
+      body {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+      canvas {
+        margin: 1rem;
+        border: 1px solid black;
+      }
+    </style>
+
+    <script src="particles.ts" type="module"></script>
+  </head>
+  <body>
+    <canvas id="simulation-canvas" width="512" height="512"></canvas>
+    <div class="statistics">
+      FPS: <span id="fps"></span>
+    </div>
+  </body>
+</html>
