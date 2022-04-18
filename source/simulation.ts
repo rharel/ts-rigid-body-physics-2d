@@ -158,7 +158,6 @@ export class World {
     if (options.position !== undefined) {
       entity.position.x = options.position.x;
       entity.position.y = options.position.y;
-      this.collision_culler.moved(entity, old_position);
     }
     if (options.velocity !== undefined) {
       entity.velocity.x = options.velocity.x;
@@ -167,6 +166,10 @@ export class World {
     if (options.applied_force !== undefined) {
       entity.applied_force.x = options.applied_force.x;
       entity.applied_force.y = options.applied_force.y;
+    }
+
+    if (options.position !== undefined || options.radius !== undefined) {
+      this.collision_culler.moved(entity, old_position);
     }
   }
 
