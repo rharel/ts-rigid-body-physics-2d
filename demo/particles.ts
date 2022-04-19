@@ -66,23 +66,33 @@ function setup() {
     fps.textContent = (fps_sum / nr_fps_samples).toPrecision(2).toString();
 
     world.for_each_entity((entity_id, entity) => {
+      let update_required = false;
       if (entity.position.x < entity.radius) {
         entity.position.x = entity.radius;
         entity.velocity.x *= -1;
+        update_required = true;
       }
       if (entity.position.x > world.options.size - entity.radius) {
         entity.position.x = world.options.size - entity.radius;
         entity.velocity.x *= -1;
+        update_required = true;
       }
       if (entity.position.y < entity.radius) {
         entity.position.y = entity.radius;
         entity.velocity.y *= -1;
+        update_required = true;
       }
       if (entity.position.y > world.options.size - entity.radius) {
         entity.position.y = world.options.size - entity.radius;
         entity.velocity.y *= -1;
+        update_required = true;
       }
-      world.update(entity_id, entity);
+      if (update_required) {
+        world.update(entity_id, {
+          position: entity.position,
+          velocity: entity.velocity,
+        });
+      }
     });
   });
 
