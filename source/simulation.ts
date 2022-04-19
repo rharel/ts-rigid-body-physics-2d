@@ -174,9 +174,9 @@ export class World {
   }
 
   for_each_entity(callback: (id: number, entity: EntityView) => void) {
-    for (const entity_id of this.entities.keys()) {
+    this.entities.forEach((_entity, entity_id) => {
       callback(entity_id, this.entity(entity_id));
-    }
+    });
   }
 
   step(dt: number) {
