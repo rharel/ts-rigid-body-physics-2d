@@ -51,15 +51,10 @@ function render_world_frame(
 
 export function render_world_animation(
   world: World,
-  canvas: HTMLCanvasElement,
+  context: CanvasRenderingContext2D,
   entity_styles: EntityStyles,
   frame_callback?: () => void
 ): AnimationControls {
-  const context = canvas.getContext("2d");
-  if (context === null) {
-    throw new Error("could not obtain canvas context");
-  }
-
   // Frame request loop.
   let frame_request: number | null = null;
   let last_frame_time: number | null = null;

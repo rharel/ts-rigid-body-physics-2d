@@ -60,11 +60,17 @@ function setup() {
     entity_styles[particle_id] = { fill: PALETTE[i % PALETTE.length] };
   }
 
-  const canvas = document.getElementById(
-    "simulation-canvas"
-  ) as HTMLCanvasElement;
+  const canvas = document.getElementById("simulation-canvas");
+  if (!(canvas instanceof HTMLCanvasElement)) {
+    throw new Error("cannot find canvas");
+  }
 
-  const controls = render_world_animation(world, canvas, entity_styles, () => {
+  const context = canvas.getContext("2d", { alpha: false });
+  if (context === null) {
+    throw new Error("cannot get drawing context");
+  }
+
+  const controls = render_world_animation(world, context, entity_styles, () => {
     world.for_each_entity((entity_id, entity) => {
       if (entity.velocity.x === 0 && entity.velocity.y === 0) {
         return;
